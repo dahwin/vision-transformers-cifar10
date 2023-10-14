@@ -37,7 +37,6 @@ parser.add_argument('--opt', default="adam")
 parser.add_argument('--resume', '-r', action='store_true', help='resume from checkpoint')
 parser.add_argument('--noaug', action='store_true', help='disable use randomaug')
 parser.add_argument('--noamp', action='store_true', help='disable mixed precision training. for older pytorch versions')
-parser.add_argument('--nowandb', action='store_true', help='disable wandb')
 parser.add_argument('--mixup', action='store_true', help='add mixup augumentations')
 parser.add_argument('--net', default='vit')
 parser.add_argument('--bs', default='512')
@@ -49,14 +48,6 @@ parser.add_argument('--convkernel', default='8', type=int, help="parameter for c
 
 args = parser.parse_args()
 
-# take in args
-usewandb = ~args.nowandb
-if usewandb:
-    import wandb
-    watermark = "{}_lr{}".format(args.net, args.lr)
-    wandb.init(project="cifar10-challange",
-            name=watermark)
-    wandb.config.update(args)
 
 bs = int(args.bs)
 imsize = int(args.size)
