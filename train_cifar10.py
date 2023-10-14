@@ -29,6 +29,16 @@ from utils import progress_bar
 from randomaug import RandAugment
 from models.vit import ViT
 from models.convmixer import ConvMixer
+import os
+
+# Define the folder name
+folder_name = 'checkpoint'
+
+# Check if the folder exists, and if not, create it
+if not os.path.exists(folder_name):
+    os.mkdir(folder_name)
+
+# Now, the "checkpoint" folder should exist or be created if it didn't exist.
 
 # parsers
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
